@@ -1,0 +1,92 @@
+﻿@model AspProjektPojisteni.Models.Insurance
+
+@{
+	ViewData["Title"] = "Detail";
+}
+
+<div>
+	<div class="d-flex justify-content-center">
+	<h3>Pojistná smlouva číslo @Html.DisplayFor(model => model.ID)</h3>
+	</div>
+	<hr />
+	<dl class="row">
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class = "col-sm-4">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.InsuranceRate)
+		</dt>
+		<dd class = "col-sm-4">
+			@Html.DisplayFor(model => model.InsuranceRate) Kč
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.InsuranceStart)
+		</dt>
+		<dd class = "col-sm-4">
+			@Html.DisplayFor(model => model.InsuranceStart)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.InsuranceEnd)
+		</dt>
+		<dd class = "col-sm-4">
+			@Html.DisplayFor(model => model.InsuranceEnd)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.Policyholder.FirstName)
+		</dt>
+		<dd class = "col-sm-4">
+			@Html.DisplayFor(model => model.Policyholder.FirstName)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Policyholder.LastName)
+		</dt>
+		<dd class="col-sm-4">
+			@Html.DisplayFor(model => model.Policyholder.LastName)
+		</dd>
+	</dl>
+	<div>
+			@if (User.IsInRole("admin"))
+	{
+			<a class="btn btn-warning my-2" asp-action="Edit" asp-route-id="@Model?.ID">Upravit</a>
+			<a class="btn btn-danger my-2" asp-action="Delete" asp-route-id="@Model?.ID">Smazat</a>
+	}
+
+	</div>
+	    <hr/>
+    <div class="d-flex justify-content-center">
+    <h3 class="my-3">Pojistné události</h3>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Číslo pojistné události</th>
+                <th>Pojistné plnění</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.InsuranceEvents)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Payout) Kč</td>
+                    <td>
+                        <a class="btn btn-info" asp-controller="InsuranceEvents" asp-action="Details" asp-route-id="@item?.ID">Detail</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="btn btn-warning" asp-controller="InsuranceEvents" asp-action="Edit" asp-route-id="@item?.ID">Upravit</a>
+                            <a class="btn btn-danger" asp-controller="InsuranceEvents" asp-action="Delete" asp-route-id="@item?.ID">Smazat</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<div>
+	<a asp-action="Index">Zpět na výpis</a>
+</div>

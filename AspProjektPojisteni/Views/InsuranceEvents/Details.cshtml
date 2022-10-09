@@ -1,0 +1,60 @@
+﻿@model AspProjektPojisteni.Models.InsuranceEvent
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div>
+    <div class="d-flex justify-content-center">
+    <h4>Pojistná událost číslo @Html.DisplayFor(model => model.ID)</h4>
+    </div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfEvent)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.DateOfEvent)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Payout)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Payout) Kč
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Insurance)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Insurance.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Policyholder)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Policyholder.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Policyholder)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Policyholder.LastName)
+        </dd>
+        <div class="w-100"></div>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description):
+        </dt>
+        <dd class = "col-sm-12">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("admin")){
+            <a class="btn btn-warning my-2" asp-action="Edit" asp-route-id="@Model?.ID">Upravit</a>
+            <a class="btn btn-danger my-2" asp-action="Delete" asp-route-id="@Model?.ID">Smazat</a>
+            <br/>
+    }
+    <a asp-action="Index">Zpět na výpis</a>
+</div>

@@ -1,0 +1,90 @@
+﻿@model AspProjektPojisteni.Models.Policyholder
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div>
+    <div class="d-flex justify-content-center">
+    <h3>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h3>
+    </div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ZIP)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.ZIP)
+        </dd>
+    </dl>
+    <div>    
+        @if (User.IsInRole("admin"))
+    {
+        <a class="btn btn-warning my-2" asp-action="Edit" asp-route-id="@Model?.ID">Upravit</a>
+        <a class="btn btn-danger my-2" asp-action="Delete" asp-route-id="@Model?.ID">Smazat</a>
+    }
+</div>
+    <hr/>
+    <div class="d-flex justify-content-center">
+    <h3 class="my-3">Sjednaná pojištění</h3>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Pojištění</th>
+                <th>Částka</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Insurances)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.InsuranceRate) Kč</td>
+                    <td>
+                        <a class="btn btn-info" asp-controller="Insurances" asp-action="Details" asp-route-id="@item?.ID">Detail</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="btn btn-warning" asp-controller="Insurances" asp-action="Edit" asp-route-id="@item?.ID">Upravit</a>
+                            <a class="btn btn-danger" asp-controller="Insurances" asp-action="Delete" asp-route-id="@item?.ID">Smazat</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Zpět na výpis</a>
+</div>

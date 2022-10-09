@@ -1,0 +1,60 @@
+﻿@model AspProjektPojisteni.Models.Insurance
+
+@{
+    ViewData["Title"] = "Upravit";
+}
+<div class="d-flex justify-content-center">
+<h4>Pojistná smlouva číslo @Html.DisplayFor(model => model.ID)</h4>
+</div>
+<hr />
+        <form asp-action="Edit">
+            <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group col-md-4">
+                <label asp-for="Name" class="control-label"></label>
+                <select asp-for="Name" class="form-control">
+                    <option>Poviné ručení</option>
+                    <option>Havarijní pojištění</option>
+                    <option>Důchodové připojištění</option>
+                    <option>Úrazové pojištění</option>
+                    <option>Životní pojištění</option>
+                    <option>Pojištění nemovitosti</option>
+                    <option>Pojištění majetku</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="InsuranceRate" class="control-label"></label>
+                <input asp-for="InsuranceRate" class="form-control" />
+                <span asp-validation-for="InsuranceRate" class="text-danger"></span>
+            </div>
+            <div class="w-100"></div>
+            <div class="form-group col-md-4">
+                <label asp-for="InsuranceStart" class="control-label"></label>
+                <input asp-for="InsuranceStart" class="form-control" />
+                <span asp-validation-for="InsuranceStart" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="InsuranceEnd" class="control-label"></label>
+                <input asp-for="InsuranceEnd" class="form-control" />
+                <span asp-validation-for="InsuranceEnd" class="text-danger"></span>
+            </div>
+            <div class="w-100"></div>
+            <div class="form-group col-md-3">
+                <label asp-for="PolicyholderID" class="control-label"></label>
+                <select asp-for="PolicyholderID" class="form-control" asp-items="ViewBag.PolicyholderID"></select>
+                <span asp-validation-for="PolicyholderID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Uložit" class="btn btn-primary my-2" />
+            </div>
+            </div>
+        </form>
+
+<div>
+    <a asp-action="Index">Zpět na výpis</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

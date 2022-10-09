@@ -1,0 +1,55 @@
+﻿@model AspProjektPojisteni.Models.InsuranceEvent
+
+@{
+	ViewData["Title"] = "Upravit";
+}
+<div class="d-flex justify-content-center">
+<h4>Pojistná událost čislo @Html.DisplayFor(model => model.ID)</h4>
+</div>
+<hr />
+		<form asp-action="Edit">
+			<div class="row">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="ID" />
+			<div class="form-group col-md-4">
+				<label asp-for="DateOfEvent" class="control-label"></label>
+				<input asp-for="DateOfEvent" class="form-control" />
+				<span asp-validation-for="DateOfEvent" class="text-danger"></span>
+			</div>
+			<div class="form-group col-md-4">
+				<label asp-for="Payout" class="control-label"></label>
+				<input asp-for="Payout" class="form-control" />
+				<span asp-validation-for="Payout" class="text-danger"></span>
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-md-3">
+				<label asp-for="PolicyholderID" class="control-label"></label>
+				<select asp-for="PolicyholderID" class="form-control" asp-items="ViewBag.PolicyholderID"></select>
+				<span asp-validation-for="PolicyholderID" class="text-danger"></span>
+			</div>
+			<div class="form-group col-md-3">
+				<label asp-for="InsuranceID" class="control-label"></label>
+				<select asp-for="InsuranceID" class="form-control" asp-items="ViewBag.InsuranceID"></select>
+				<span asp-validation-for="InsuranceID" class="text-danger"></span>
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Uložit" class="btn btn-primary my-2" />
+			</div>
+				</div>
+		</form>
+
+<div>
+	<a asp-action="Index">Zpět na výpis</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	}

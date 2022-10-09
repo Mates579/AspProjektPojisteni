@@ -1,0 +1,55 @@
+﻿@model AspProjektPojisteni.Models.Insurance
+
+@{
+    ViewData["Title"] = "Smazat";
+}
+<div class="d-flex justify-content-center">
+<h3>Opravdu chcete odstranit pojistnou smlouvu číslo @Html.DisplayFor(model => model.ID)?</h3>
+</div>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InsuranceRate)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.InsuranceRate) Kč
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InsuranceStart)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.InsuranceStart)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InsuranceEnd)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.InsuranceEnd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Policyholder.FirstName)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.Policyholder.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Policyholder.LastName)
+        </dt>
+        <dd claclass="col-sm-4">
+            @Html.DisplayFor(model => model.Policyholder.LastName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Smazat" class="btn btn-danger my-2" />
+    </form>
+    <a asp-action="Index">Zpět na výpis</a>
+</div>

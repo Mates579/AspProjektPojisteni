@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AspProjektPojisteni.Models.InsuranceEvent>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="d-flex justify-content-center">
+<h1>Pojistné události</h1>
+</div>
+
+<p class="d-flex justify-content-center">
+    <a class="btn btn-primary" asp-action="Create">Přidat novou událost</a>
+</p>
+
+<form asp-controller="InsuranceEvents" asp-action="Index">
+    <p>Číslo pojistné události: <input type="number" name="searchId" />
+        <input type="submit" value="Vyhledat" />
+    </p>
+</form>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfEvent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Insurance.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Policyholder.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Policyholder.LastName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfEvent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Insurance.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Policyholder.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Policyholder.LastName)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.ID">Detail</a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ID">Upravit</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Smazat</a>
+                    }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
