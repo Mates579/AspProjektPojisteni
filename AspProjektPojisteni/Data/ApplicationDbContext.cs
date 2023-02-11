@@ -10,8 +10,8 @@ namespace AspProjektPojisteni.Data
             : base(options)
         {
         }
-        public DbSet<AspProjektPojisteni.Models.Policyholder> Policyholder { get; set; }
-        public DbSet<AspProjektPojisteni.Models.Insurance> Insurance { get; set; }
-        public DbSet<AspProjektPojisteni.Models.InsuranceEvent> InsuranceEvent { get; set; }
+        public DbSet<Policyholder> Policyholder { get; set; }
+        public DbSet<Insurance> Insurance { get; set; }
+        public DbSet<InsuranceEvent> InsuranceEvent { get; set; }
     }
 }

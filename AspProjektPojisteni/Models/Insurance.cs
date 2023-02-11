@@ -5,11 +5,16 @@ namespace AspProjektPojisteni.Models
 {
     public class Insurance
     {
+        public Insurance()
+        {
+            this.InsuranceEvents = new HashSet<InsuranceEvent>();
+        }
+
         [Display(Name = "Číslo smlouvy")]
         public int ID { get; set; }
         [Required(ErrorMessage = "Poviný údaj")]
         [Display(Name = "Pojištění")]
-        public string Name { get; set; } = "";
+        public string Name { get; set; }
         [Required(ErrorMessage = "Poviný údaj")]
         [Display(Name = "Pojistná částka")]
         public int InsuranceRate { get; set; }
@@ -26,6 +31,6 @@ namespace AspProjektPojisteni.Models
         public int PolicyholderID { get; set; }
 
         public virtual Policyholder? Policyholder { get; set; }
-        public virtual ICollection<InsuranceEvent>? InsuranceEvents { get; set; }
+        public virtual ICollection<InsuranceEvent> InsuranceEvents { get; set; }
     }
 }

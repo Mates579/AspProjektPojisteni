@@ -9,7 +9,7 @@ namespace AspProjektPojisteni.Models
         public int ID { get; set; }
         [Required(ErrorMessage = "Poviný údaj")]
         [Display(Name = "Stručný popis události")]
-        public string Description { get; set; } = "";
+        public string Description { get; set; }
         [Required(ErrorMessage = "Poviný údaj")]
         [Display(Name = "Datum a čas události")]
         [DataType(DataType.Date)]
