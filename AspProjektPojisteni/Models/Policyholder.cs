@@ -13,7 +13,7 @@ namespace AspProjektPojisteni.Models
         public int ID { get; set; }
 
         [Display(Name = "Titul před")]
-        public string DegreeBefore { get; set; }
+        public string? DegreeBefore { get; set; }
         
         [Required(ErrorMessage = "Poviný údaj")]
         [Display(Name = "Křestní jméno")]
@@ -24,9 +24,9 @@ namespace AspProjektPojisteni.Models
         public string LastName { get; set; }
 
         [Display(Name = " Titul za")]
-        public string DegreeAfter { get; set; }
+        public string? DegreeAfter { get; set; }
 
-        public string FullName { get; set; }
+        public string? FullName { get; set; }
 
         [Required]
         [EmailAddress(ErrorMessage = "Neplatná emailová adresa")]

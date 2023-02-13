@@ -16,11 +16,11 @@ namespace AspProjektPojisteni.Triggers
 
                 policyholder.FullName = new StringBuilder()
                     .Append(policyholder.DegreeBefore)
-                    .Append(" ")
+                    .Append(' ')
                     .Append(policyholder.FirstName)
-                    .Append(" ")
+                    .Append(' ')
                     .Append(policyholder.LastName)
-                    .Append(" ")
+                    .Append(' ')
                     .Append(policyholder.DegreeAfter)
                     .ToString()
                     .Trim();
